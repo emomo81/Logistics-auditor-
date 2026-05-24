@@ -4,3 +4,8 @@ product_category_name_translation.csv
 
 # Keep the processed master dataset for Streamlit Cloud
 !master_dataset.csv
+
+# Node (presentation generator)
+node_modules/
+package-lock.json
+package.json

@@ -11,7 +11,7 @@ An audit of 96,470 delivered orders from the Olist Brazilian E-Commerce dataset 
 ## B. Project Links
 
 - **Notebook (Google Colab):** [logistics_auditor.ipynb](https://colab.research.google.com/drive/1VAAmrHdF12UJwhNQ9mZvDuzk8vIWb7DY?usp=sharing) *(Anyone with link can view)*
-- **Dashboard (Streamlit Cloud):** [🔗 Add your Streamlit URL here after deployment]
+- **Dashboard (Streamlit Cloud):** [https://kpkujdhbawruts6v4zeapps.streamlit.app/](https://kpkujdhbawruts6v4zeapps.streamlit.app/)
 - **Presentation:** [🔗 Add your slide deck link here] *(PDF or Google Slides — set to "Anyone with link can view")*
 
 ---
