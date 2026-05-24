@@ -129,7 +129,7 @@ with tab1:
     )
     fig.update_traces(textposition="outside")
     fig.update_layout(coloraxis_showscale=False, xaxis_tickangle=-45, height=460)
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     col_a, col_b = st.columns(2)
     with col_a:
@@ -146,7 +146,7 @@ with tab1:
         )
         fig2.update_traces(textposition="top center")
         fig2.update_layout(coloraxis_showscale=False, height=400)
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
     with col_b:
         st.subheader("State Detail Table")
@@ -161,7 +161,7 @@ with tab1:
                 "avg_days_diff": "Avg Days Diff",
             }
         )
-        st.dataframe(display_df.round(2), use_container_width=True, height=400)
+        st.dataframe(display_df.round(2), width="stretch", height=400)
 
 # ── Tab 2: Sentiment ──────────────────────────────────────────────────────────
 
@@ -186,7 +186,7 @@ with tab2:
         )
         fig.update_traces(textposition="outside")
         fig.update_layout(yaxis_range=[0, 5.5], showlegend=False, height=400)
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with col_b:
         bins = [-100, -30, -14, -7, -3, 0, 7, 30, 100]
@@ -207,7 +207,7 @@ with tab2:
             markers=True,
         )
         fig2.update_layout(yaxis_range=[1, 5.5], height=400)
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width="stretch")
 
     st.subheader("Review Score Distribution")
     fig3 = px.histogram(
@@ -217,10 +217,10 @@ with tab2:
         color_discrete_map=COLOR_MAP,
         barmode="group",
         title="Review Score Distribution by Delivery Status",
-        labels={"review_score": "Review Score (1–5)", "delivery_status": "Status"},
+        labels={"review_score": "Review Score (1-5)", "delivery_status": "Status"},
         nbins=5,
     )
-    st.plotly_chart(fig3, use_container_width=True)
+    st.plotly_chart(fig3, width="stretch")
 
 # ── Tab 3: Monthly Trend (Candidate's Choice) ─────────────────────────────────
 
@@ -262,13 +262,15 @@ with tab3:
             yaxis="y2",
         )
     )
+    # FIX: titlefont was removed in Plotly 6.x — use title=dict(text=..., font=dict(...))
     fig.update_layout(
         title="Monthly Late Delivery Rate vs Average Review Score",
         xaxis_title="Month",
-        yaxis=dict(title="% Late Deliveries", titlefont=dict(color="crimson")),
+        yaxis=dict(
+            title=dict(text="% Late Deliveries", font=dict(color="crimson")),
+        ),
         yaxis2=dict(
-            title="Avg Review Score",
-            titlefont=dict(color="steelblue"),
+            title=dict(text="Avg Review Score", font=dict(color="steelblue")),
             overlaying="y",
             side="right",
             range=[1, 5],
@@ -276,7 +278,7 @@ with tab3:
         legend=dict(x=0.01, y=0.99),
         height=460,
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     col_a, col_b = st.columns(2)
     with col_a:
@@ -326,7 +328,7 @@ with tab4:
             yaxis={"categoryorder": "total ascending"},
             height=max(400, n * 28),
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
 # ── Tab 5: About ──────────────────────────────────────────────────────────────
 
@@ -346,9 +348,9 @@ with tab5:
 1. Raw Olist CSVs processed in `logistics_auditor.ipynb`
 2. Tables joined: Orders + Reviews + Customers + Order Items + Products + Translations
 3. `Days_Difference = estimated_delivery - actual_delivery` (positive = early, negative = late)
-4. Orders classified as **On Time** (≥0d), **Late** (−5d to 0d), **Super Late** (<−5d)
+4. Orders classified as **On Time** (>=0d), **Late** (-5d to 0d), **Super Late** (<-5d)
 5. Canceled / unavailable orders excluded
-6. Exported as `master_dataset.csv` → loaded here
+6. Exported as `master_dataset.csv` -> loaded here
 
 ---
 
