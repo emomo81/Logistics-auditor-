@@ -1,7 +1,12 @@
+import os
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+
+# Resolve data file path relative to this script (works locally & on Streamlit Cloud)
+_HERE = os.path.dirname(os.path.abspath(__file__))
+_DATA_FILE = os.path.join(_HERE, "master_dataset.csv")
 
 st.set_page_config(
     page_title="Veridi Logistics Auditor",
@@ -13,7 +18,7 @@ st.set_page_config(
 @st.cache_data
 def load_data():
     df = pd.read_csv(
-        "master_dataset.csv",
+        _DATA_FILE,
         parse_dates=[
             "order_purchase_timestamp",
             "order_delivered_customer_date",

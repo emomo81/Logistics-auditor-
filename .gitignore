@@ -1,1 +1,6 @@
-*.csv
+# Raw Olist source files (too large for GitHub)
+olist_*.csv
+product_category_name_translation.csv
+
+# Keep the processed master dataset for Streamlit Cloud
+!master_dataset.csv
